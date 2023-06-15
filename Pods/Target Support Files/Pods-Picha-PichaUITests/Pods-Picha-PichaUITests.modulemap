@@ -1,0 +1,6 @@
+framework module Pods_Picha_PichaUITests {
+  umbrella header "Pods-Picha-PichaUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
