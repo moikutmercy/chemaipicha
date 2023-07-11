@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50871AD52A3B50100036902D /* Login1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50871AD42A3B50100036902D /* Login1ViewController.swift */; };
 		50E4BCDB2A38820F0055E100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E4BCDA2A38820F0055E100 /* AppDelegate.swift */; };
 		50E4BCDD2A38820F0055E100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E4BCDC2A38820F0055E100 /* SceneDelegate.swift */; };
 		50E4BCDF2A38820F0055E100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E4BCDE2A38820F0055E100 /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		0CCF3DD900BA31B7C0362D0C /* Pods-Picha-PichaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picha-PichaUITests.release.xcconfig"; path = "Target Support Files/Pods-Picha-PichaUITests/Pods-Picha-PichaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1D98FC682756016EA2A2C5CA /* Pods-Picha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picha.debug.xcconfig"; path = "Target Support Files/Pods-Picha/Pods-Picha.debug.xcconfig"; sourceTree = "<group>"; };
 		1F4CD3AECFC906F833B31FB8 /* Pods-Picha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picha.release.xcconfig"; path = "Target Support Files/Pods-Picha/Pods-Picha.release.xcconfig"; sourceTree = "<group>"; };
+		50871AD42A3B50100036902D /* Login1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login1ViewController.swift; sourceTree = "<group>"; };
 		50E4BCD72A38820F0055E100 /* Picha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E4BCDA2A38820F0055E100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50E4BCDC2A38820F0055E100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				50E4BCDC2A38820F0055E100 /* SceneDelegate.swift */,
 				50E4BCDE2A38820F0055E100 /* ViewController.swift */,
 				50E4BCE02A38820F0055E100 /* Main.storyboard */,
+				50871AD42A3B50100036902D /* Login1ViewController.swift */,
 				50E4BD1B2A38A1700055E100 /* CustomCollectionViewCell.swift */,
 				50E4BD0F2A3889710055E100 /* CollectionView.swift */,
 				50E4BCE62A3882130055E100 /* Assets.xcassets */,
@@ -448,6 +451,7 @@
 				50E4BCDB2A38820F0055E100 /* AppDelegate.swift in Sources */,
 				50E4BCDD2A38820F0055E100 /* SceneDelegate.swift in Sources */,
 				50E4BCE52A38820F0055E100 /* Picha.xcdatamodeld in Sources */,
+				50871AD52A3B50100036902D /* Login1ViewController.swift in Sources */,
 				50E4BD652A39A03B0055E100 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

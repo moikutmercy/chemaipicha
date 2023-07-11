@@ -9,18 +9,16 @@ import UIKit
 
 class CollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    
     private var labels = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen"]
     
     private var mapicha : [picha] = []
     
     
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CustomCollectionViewCell
-//        extractMapichaFromJsonObject()
-        print("loading pichas")
-        print(mapicha.count)
-        print(mapicha[indexPath.row].urls?.small)
+        //        extractMapichaFromJsonObject()
         cell.setImageFromURL(url: URL(string: mapicha[indexPath.row].urls?.small ?? "")!)
         return cell
     }
@@ -35,25 +33,32 @@ class CollectionView: UICollectionView, UICollectionViewDataSource, UICollection
     }
     
     func extractMapichaFromJsonObject() {
-        print("loading file")
-        guard let jsonData = Utils().loadJSONData(from: "picha_response") else {
-            fatalError("Could not convert data")
-        }
-        print(jsonData)
-    
-    let decoder = JSONDecoder()
-        print("decoding pichas")
-        do {
-            let mypichas = try decoder.decode(pichni.self, from: jsonData)
-            self.mapicha = mypichas.pichas ?? []
-        } catch {
-            print("Error decoding data from file: \(error)")
+        print("fetching API")
+        Utils().callEndpoint(urlString: "https://api.unsplash.com/photos?client_id=BynWB-cZ3gnxyOiLK8FV2ojXYFfVc9gpwIFfgLeSGX8") { result in
+            print("starting")
             
+            switch result {
+            case .success(let data):
+                // Handle the response data
+                let decoder = JSONDecoder()
+                print("decoding pichas")
+                do {
+                    
+                    self.mapicha = try decoder.decode([picha].self, from: data)
+                    print(self.mapicha.count)
+                    DispatchQueue.main.async {
+                        self.reloadData()
+                    }
+                } catch {
+                    print("Error decoding data: \(error)")
+                }
+                
+            case .failure(let error):
+                // Handle the error
+                print("Error:", error)
+            }
         }
-//        guard let mypichas = try? decoder.decode(pichni.self, from: jsonData) else {
-//            fatalError("There was a problem decoding the data...")
-//        }
-        
+
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -65,24 +70,23 @@ class CollectionView: UICollectionView, UICollectionViewDataSource, UICollection
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        return CGSize(width: self.frame.width * 0.45, height: self.frame.height * 0.40)
-    }
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+        {
+            return CGSize(width: self.frame.width * 0.45, height: self.frame.height * 0.40)
+        }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
-}
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}

@@ -25,4 +25,51 @@ class Utils {
             return nil
         }
     }
+    func callEndpoint(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        print("getting url")
+        // Create a URL from the provided string
+        guard let url = URL(string: urlString) else {
+            let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+            completion(.failure(error))
+            return
+        }
+        
+        // Create a URLSessionDataTask
+        print("creating task")
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("error")
+                completion(.failure(error))
+                return
+            }
+            
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                let error = NSError(domain: "Invalid HTTP response", code: 0, userInfo: nil)
+                print("invalid response")
+                completion(.failure(error))
+                return
+            }
+            
+            if httpResponse.statusCode == 200 {
+                if let data = data {
+                    print("success")
+                    completion(.success(data))
+                } else {
+                    print("oops")
+                    let error = NSError(domain: "Empty response data", code: 0, userInfo: nil)
+                    completion(.failure(error))
+                }
+            } else {
+                print("http error")
+                let error = NSError(domain: "HTTP Error", code: httpResponse.statusCode, userInfo: nil)
+                completion(.failure(error))
+            }
+        }
+        
+        // Start the URLSessionDataTask
+        
+        task.resume()
+    }
+
 }
